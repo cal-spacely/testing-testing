@@ -289,10 +289,12 @@ async def main():
     print("...Deduplicating results...")
     enriched_results = await enrich_with_address(all_results)
     deduped_results = dedupe_properties(enriched_results)
+    export_scraper_input(deduped_results, data_dir)
     write_deduped_to_csv(deduped_results, filename="greystar_deduped.csv")
     print("Deduped listing saved to greystar_deduped.csv")
     
 if __name__ == "__main__":
 
     asyncio.run(main())
+
 
