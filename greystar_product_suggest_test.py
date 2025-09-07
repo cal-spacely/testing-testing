@@ -75,24 +75,6 @@ def construct_seo_url(item):
         property_id = "unknown"
     return f"https://www.greystar.com/{name}-{city}-{state}/p_{property_id}"
 
-
-def dedupe_properties(results):
-    seen = set()
-    deduped = []
-
-    for item in results:
-        uri = item.get("clickUri", "")
-        if uri.startswith("property://"):
-            property_id = uri.split("property://")[1].split("/")[0]
-        else:
-            property_id = uri  # fallback if format changes
-
-        if property_id not in seen:
-            seen.add(property_id)
-            deduped.append(item)
-
-    return deduped
-
 async def get_property_address(page):
     try:
         await page.wait_for_selector("div.address-bar p.address", timeout=5000)
@@ -313,3 +295,4 @@ async def main():
 if __name__ == "__main__":
 
     asyncio.run(main())
+
