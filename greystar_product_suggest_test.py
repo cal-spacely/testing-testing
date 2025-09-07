@@ -8,7 +8,6 @@ import asyncio
 import random
 import re
 
-# target_dir = r"C:\users\warre\Documents\Jordans_Crawler"
 target_dir = os.path.dirname(os.path.abspath(__file__))
 
 os.chdir(target_dir)
@@ -213,7 +212,7 @@ def dedupe_properties(results):
     
     return deduped
 
-def export_scraper_input(deduped, target_dir):
+def export_scraper_input(deduped, data_dir):
     
     scraper_input = []
     for item in deduped:
@@ -312,4 +311,5 @@ async def main():
     print("Deduped listing saved to greystar_deduped.csv")
     
 if __name__ == "__main__":
+
     asyncio.run(main())
