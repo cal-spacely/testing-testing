@@ -287,14 +287,16 @@ async def main():
     write_to_csv(all_results, filename="greystar_discovery.csv")
     print("Saved results to greystar_discovery.csv")
     print("...Deduplicating results...")
-    enriched_results = await enrich_with_address(all_results)
-    deduped_results = dedupe_properties(enriched_results)
+    deduped_results = dedupe_properties(all_results)
     export_scraper_input(deduped_results, data_dir)
+    print("...Enriching properties...")
+    enriched_results = await enrich_with_address(deduped_results)
     write_deduped_to_csv(deduped_results, filename="greystar_deduped.csv")
     print("Deduped listing saved to greystar_deduped.csv")
     
 if __name__ == "__main__":
 
     asyncio.run(main())
+
 
 
